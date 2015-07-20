@@ -1,0 +1,19 @@
+db:
+  image: postgres
+  volumes:
+    - /var/lib/postgresql/data
+  environment:
+    POSTGRES_PASSWORD: password
+    POSTGRES_USER: quotes
+
+node:
+  image: node
+  command: node /app/bin/www
+  ports:
+    - 3000:3000
+  links:
+    - db
+  volumes:
+    - .:/app
+  environment:
+    DATABASE_URL: postgres://quotes:password@db/postgres
