@@ -24,7 +24,7 @@ router.get('/quote/:id', function(req, res) {
             name: 'select_quote',
             text: 'SELECT * FROM quote WHERE id = $1',
             values: [req.params.id]
-        }).get('rows').get('0').then(function(row) {
+        }).get('rows').get(0).then(function(row) {
             res.json(row);
         }).catch(function(err) {
             res.send(500);
